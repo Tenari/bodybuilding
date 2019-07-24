@@ -1,0 +1,20 @@
+<template name="admin">
+  <div>
+    Add concept
+    <form>
+      <div>name: <input type="text" name="name"/></div>
+      <div>text: <textarea name="text"></textarea></div>
+      <div>
+        parent: <input type="text" name="search"/> {{parentId}}
+        <ul>
+          {{#each match in matches}}
+            <li class="parent-choice" data-id="{{match._id}}">{{match._id}}: {{match.name}}</li>
+          {{/each}}
+        </ul>
+      </div>
+      <button>add</button>
+      <div>result: {{result}}</div>
+    </form>
+  </div>
+  <button class="dump">dump concepts to file</button>
+</template>

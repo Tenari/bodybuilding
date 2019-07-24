@@ -1,0 +1,17 @@
+<template name="conceptTree">
+  <li>
+    <a href="#" data-id="{{concept._id}}" class="concept">{{concept.name}}</a>
+    {{#if showList}}
+      [-]
+      <ul>
+        {{#each c in concept.children}}
+          {{> conceptTree concept=c open=open}}
+        {{/each}}
+      </ul>
+    {{else}}
+      {{#if concept.childIds}}
+        [+]
+      {{/if}}
+    {{/if}}
+  </li>
+</template>

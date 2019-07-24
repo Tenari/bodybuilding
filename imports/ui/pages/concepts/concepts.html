@@ -1,0 +1,12 @@
+<template name="Concepts_index">
+  <ul class="concepts">
+    {{#each concept in topConcepts}}
+      {{> conceptTree concept=concept open=opened}}
+    {{/each}}
+  </ul>
+  {{#if selectedConcept}}
+    <div>
+      {{> concept concept=selectedConcept}}
+    </div>
+  {{/if}}
+</template>

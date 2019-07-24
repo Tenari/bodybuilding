@@ -1,0 +1,12 @@
+<template name="App_home">
+  {{> loginButtons}}
+
+  {{#if currentUser}}
+    <p><a href="/tools">Tools</a></p>
+  {{else}}
+    <p>You gotta login if you wanna use the tools.</p>
+  {{/if}}
+
+  <p><a href="/concepts">Concepts</a></p>
+
+</template>
