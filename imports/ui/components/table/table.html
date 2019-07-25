@@ -1,0 +1,21 @@
+<template name="table">
+  <table>
+    <thead>
+      <tr>
+        {{#each header in headers}}
+          <th>{{header.label}}</th>
+        {{/each}}
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each row in rows}}
+        <tr>
+          {{#each header in headers}}
+            <td>{{pick row header.key}}</td>
+          {{/each}}
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</template>

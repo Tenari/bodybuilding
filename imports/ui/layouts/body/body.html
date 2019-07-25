@@ -1,3 +1,10 @@
 <template name="App_body">
+  <nav>
+    {{> loginButtons}}
+    {{#if currentUser}}
+      <a href="/tools">Tools</a>
+    {{/if}}
+    <a href="/concepts">Concepts</a>
+  </nav>
   {{> Template.dynamic template=main}}
 </template>

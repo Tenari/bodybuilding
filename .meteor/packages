@@ -27,3 +27,4 @@ accounts-password
 accounts-ui
 aldeed:simple-schema
 dburles:collection-helpers
+underscore

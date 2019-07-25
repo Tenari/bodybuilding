@@ -1,0 +1,12 @@
+<template name="nutrition">
+  {{> commandline interpreter=interpreter}}
+  {{#if add}}
+    {{> Template.dynamic template='form' data=addData}}
+  {{/if}}
+  {{#if addResult}}
+    <div>{{addResult}}</div>
+  {{/if}}
+  {{#if show}}
+    {{> Template.dynamic template='table' data=showData}}
+  {{/if}}
+</template>

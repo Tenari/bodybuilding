@@ -1,12 +1,8 @@
 <template name="App_home">
-  {{> loginButtons}}
+  <p>This site represents a summary of everything I know about bodybuilding, as well as a number of useful tools I built for myself to use, like a nutrition tracker, and a workout logger, and a workout program generator.</p>
 
   {{#if currentUser}}
-    <p><a href="/tools">Tools</a></p>
   {{else}}
     <p>You gotta login if you wanna use the tools.</p>
   {{/if}}
-
-  <p><a href="/concepts">Concepts</a></p>
-
 </template>

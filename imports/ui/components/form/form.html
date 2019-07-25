@@ -1,0 +1,24 @@
+<template name="form">
+  <h2>{{header}}</h2>
+  <form>
+    {{#each field in fields}}
+      <div>
+        {{field.label}} 
+        {{#if isType field.type 'enum'}}
+          {{> dropdown options=field.options key=field.key}}
+        {{else}}
+          {{#if isType field.type 'calc'}}
+            {{doCalc field}}
+          {{else}}
+            {{#if isType field.type 'map'}}
+              mapping
+            {{else}}
+              <input type="{{field.type}}" name="{{field.key}}"/>
+            {{/if}}
+          {{/if}}
+        {{/if}}
+      </div>
+    {{/each}}
+    <button class="submit">submit</button>
+  </form>
+</template>

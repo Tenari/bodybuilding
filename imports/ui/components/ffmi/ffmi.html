@@ -1,0 +1,10 @@
+<template name="ffmi_calc">
+  <div>Weight (lbs): <input type="number" class="weight"/></div>
+  <div>Body fat %: <input type="number" class="bf"/></div>
+  <div>Height (inches): <input type="number" class="height"/></div>
+  <button>Calculate</button>
+  {{#if ffmi}}
+    <div>Your FFMI is {{ffmi}} out of a "<a href="https://web.archive.org/web/20180928231158/http://gregnuckols.com/2016/12/11/ffmi/" target="_blank">natty limit</a>" of 25</div>
+    <p>Adjusted FFMI = FFMI + (6.1 x (1.8 - ((Height in ft x 12.0 + in) x 0.0254)))</p>
+  {{/if}}
+</template>

@@ -1,0 +1,11 @@
+<template name="tools">
+  <ul class="tools">
+    {{#each tool in list}}
+      <li><a href="?tool={{tool.key}}" data-key="{{tool.key}}">{{tool.label}}</a></li>
+    {{/each}}
+  </ul>
+
+  {{#if selectedTool}}
+    {{> Template.dynamic template=selectedTool}}
+  {{/if}}
+</template>

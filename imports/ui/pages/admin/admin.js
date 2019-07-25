@@ -42,7 +42,6 @@ Template.admin.events({
     });
   },
   'click button.dump'(e, instance) {
-    alert('not implemented');
-    //Concepts.find({}).fetch()
+    Meteor.call('concepts.dump');
   },
 })
