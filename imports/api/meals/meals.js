@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import { _ } from 'meteor/underscore';
+import { Ingredients } from '/imports/api/ingredients/ingredients.js';
 
 export const Meals = new Mongo.Collection('meals');
 /*
@@ -16,7 +17,9 @@ export const Meals = new Mongo.Collection('meals');
 
 Meals.formFields = [
   {key: 'name', type: 'string', label: 'Meal'},
-  {key: 'ingredients', type: 'map', label: 'Ingredients', mapKey: '_id', mapValue: 'number', mapCollection: 'Ingredients'},
+  {key: 'ingredients', type: 'map', label: 'Ingredients', mapKey: '_id', mapValue: 'number', searchDisplay: 'name', mapName: 'ingredients', calcSuggestions: function(){
+    return function(search){return Ingredients.find({name: { $regex: search, $options: 'i' }}).fetch()};
+  }},
   {key: 'calories', type: 'calc', label: 'Calories', calcKey: 'ingredients', calc: function(ingredients, map){
     return _.reduce(_.map(map, function(count, id){return ingredients[id].calories * count;}),function(memo, cals){ return memo + cals;}, 0);
   }},

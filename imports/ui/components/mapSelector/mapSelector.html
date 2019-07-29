@@ -1,0 +1,13 @@
+<template name="mapSelector">
+  <div class="map-selector">
+    {{> searchdown inputClass='map-search' inputName='mapKey' calcSuggestions=wrappedCalcSuggestions searchDisplay=searchDisplay choose=chooseFn}}
+    {{#if key}}
+      amount: <input type="number" name="mapValue"/>
+      <button>add</button>
+    {{/if}}
+    {{> table rows=mapRows headers=mapHeaders}}
+    {{#each row in mapRows}}
+      <input type="hidden" value="{{row.value}}" name="{{mapName}}[{{row.key}}]"/>
+    {{/each}}
+  </div>
+</template>

@@ -11,21 +11,32 @@ Template.nutrition.onCreated(function(){
   this.show = new ReactiveVar(null);
   this.add = new ReactiveVar(null);
   this.addResult = new ReactiveVar(null);
+  this.autocompleteOptions = [
+    'show','add','log','clear',
+    'show ingredients','show meals',
+    'add ingredient', 'add meal',
+    'log meal',"log meal 'scrambled eggs'"
+  ];
+  this.subscribe('ingredients.mine');
+  this.subscribe('meals.mine');
 });
 
 Template.nutrition.helpers({
+  autocompleteOptions(){
+    return Template.instance().autocompleteOptions;
+  },
   interpreter(){
     var instance = Template.instance();
     return function(command) {
       const args = command.split(' ');
       if (args[0] == 'show') {
         instance.show.set(args[1]);
-        instance.subscribe(args[1]+'.mine');
       } else if (args[0] === 'add') {
-        instance.add.set(args[1]);
+        instance.add.set(args[1].trim());
       } else if (args[0] === 'clear') {
         instance.show.set(null);
         instance.add.set(null);
+      } else if (args[0] === 'log') {
       }
     }
   },
@@ -38,18 +49,21 @@ Template.nutrition.helpers({
   addData(){
     const instance = Template.instance();
     const add = instance.add.get();
-    if (add == 'ingredient') {
-      return {
-        fields: Ingredients.formFields,
-        header: 'Add ingredient',
-        handleSubmit: function(arr){ Meteor.call('ingredients.add', arr, function(error, result){
-          instance.addResult.set(error || result);
-          if(!error) {
-            instance.add.set(null);
-          }
-        }) }
-      };
+    console.log(add);
+    const mapping = {
+      ingredient: {collection: Ingredients, add: 'ingredients.add'},
+      meal: {collection: Meals, add: 'meals.add'},
     }
+    return {
+      fields: mapping[add].collection.formFields,
+      header: 'Add '+add,
+      handleSubmit: function(arr){ Meteor.call(mapping[add].add, arr, function(error, result){
+        instance.addResult.set(error || result);
+        if(!error) {
+          instance.add.set(null);
+        }
+      }) }
+    };
   },
   show() {
     return Template.instance().show.get();

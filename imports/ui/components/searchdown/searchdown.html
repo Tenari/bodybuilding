@@ -1,0 +1,17 @@
+<template name="searchdown">
+  <div class="searchdown">
+    {{#if chosenSearch}}
+      {{chosenSearch}} <span class="remove-choice">x</span>
+      <input type="hidden" value="{{chosenId}}" class="{{inputClass}}" name="{{inputName}}"/>
+    {{else}}
+      <input type="text" class="{{inputClass}}"/>
+    {{/if}}
+    {{#if suggestions}}
+      <ul>
+        {{#each suggestion in suggestions}}
+          <li data-id="{{suggestion._id}}">{{prop searchDisplay suggestion}}</li>
+        {{/each}}
+      </ul>
+    {{/if}}
+  </div>
+</template>

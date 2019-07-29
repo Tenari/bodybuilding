@@ -1,5 +1,5 @@
 <template name="nutrition">
-  {{> commandline interpreter=interpreter}}
+  {{> commandline interpreter=interpreter autocomplete=autocompleteOptions}}
   {{#if add}}
     {{> Template.dynamic template='form' data=addData}}
   {{/if}}
@@ -7,6 +7,7 @@
     <div>{{addResult}}</div>
   {{/if}}
   {{#if show}}
+    <h3>{{show}}</h3>
     {{> Template.dynamic template='table' data=showData}}
   {{/if}}
 </template>

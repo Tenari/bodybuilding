@@ -1,5 +1,15 @@
 <template name="commandline">
   <div class="commandline">
     <span class="prompt">$</span><input type="text"/>
+    {{#if matches}}
+      <ul>
+        {{#each item in matches}}
+          <li>{{item}}</li>
+        {{/each}}
+      </ul>
+    {{/if}}
+    {{#if firstSuggestion}}
+      <span class="first-suggestion">{{firstSuggestion}}</span>
+    {{/if}}
   </div>
 </template>

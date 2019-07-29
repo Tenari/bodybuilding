@@ -11,7 +11,7 @@
             {{doCalc field}}
           {{else}}
             {{#if isType field.type 'map'}}
-              mapping
+              {{> mapSelector mapName=field.mapName calcSuggestions=field.calcSuggestions searchDisplay=field.searchDisplay}}
             {{else}}
               <input type="{{field.type}}" name="{{field.key}}"/>
             {{/if}}
