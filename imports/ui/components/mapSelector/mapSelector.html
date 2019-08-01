@@ -6,8 +6,5 @@
       <button>add</button>
     {{/if}}
     {{> table rows=mapRows headers=mapHeaders}}
-    {{#each row in mapRows}}
-      <input type="hidden" value="{{row.value}}" name="{{mapName}}[{{row.key}}]"/>
-    {{/each}}
   </div>
 </template>

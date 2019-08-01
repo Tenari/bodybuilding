@@ -2,12 +2,12 @@ import { Meteor } from 'meteor/meteor';
 import { Ingredients } from './ingredients.js';
 
 Meteor.methods({
-  'ingredients.add'(arr){
+  'ingredients.add'(formData){
     let obj = {};
-    _.each(arr, function(field){
-      const details = _.find(Ingredients.formFields, function(f){return f.key == field.name});
+    _.each(formData, function(val, key){
+      const details = _.find(Ingredients.formFields, function(f){return f.key == key});
       if (!details) return false;
-      obj[field.name] = details.type == 'number' ? parseFloat(field.value) : field.value;
+      obj[key] = details.type == 'number' ? parseFloat(val) : val;
     })
     const id = Ingredients.insert({
       userId: Meteor.userId(),

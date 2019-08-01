@@ -12,7 +12,15 @@
       {{#each row in rows}}
         <tr>
           {{#each header in headers}}
-            <td>{{pick row header.key}}</td>
+            {{#if isObject (pick row header.key)}}
+              <td>
+                {{#each item in (list (pick row header.key))}}
+                  <div>{{item.key}} : {{item.value}}</div>
+                {{/each}}
+              </td>
+            {{else}}
+              <td>{{pick row header.key}}</td>
+            {{/if}}
           {{/each}}
 
           {{#if deletable}}

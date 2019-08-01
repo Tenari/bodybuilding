@@ -5,15 +5,15 @@
       <div>
         {{field.label}} 
         {{#if isType field.type 'enum'}}
-          {{> dropdown options=field.options key=field.key}}
+          {{> dropdown options=field.options key=field.key onChange=onChangeFn}}
         {{else}}
           {{#if isType field.type 'calc'}}
             {{doCalc field}}
           {{else}}
             {{#if isType field.type 'map'}}
-              {{> mapSelector mapName=field.mapName calcSuggestions=field.calcSuggestions searchDisplay=field.searchDisplay}}
+              {{> mapSelector mapName=field.mapName calcSuggestions=field.calcSuggestions searchDisplay=field.searchDisplay onChange=onChangeFn}}
             {{else}}
-              <input type="{{field.type}}" name="{{field.key}}"/>
+              <input type="{{field.type}}" name="{{field.key}}" class="normal-field"/>
             {{/if}}
           {{/if}}
         {{/if}}

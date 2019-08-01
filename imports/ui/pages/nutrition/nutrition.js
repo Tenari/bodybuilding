@@ -30,7 +30,7 @@ Template.nutrition.helpers({
     return function(command) {
       const args = command.split(' ');
       if (args[0] == 'show') {
-        instance.show.set(args[1]);
+        instance.show.set(args[1].trim());
       } else if (args[0] === 'add') {
         instance.add.set(args[1].trim());
       } else if (args[0] === 'clear') {

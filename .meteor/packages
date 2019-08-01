@@ -28,3 +28,4 @@ accounts-ui
 aldeed:simple-schema
 dburles:collection-helpers
 underscore
+reactive-dict
