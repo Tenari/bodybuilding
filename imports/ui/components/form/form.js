@@ -32,6 +32,10 @@ Template.form.events({
     instance.data.handleSubmit(instance.state.all());
   },
   'keyup/change input.normal-field'(e, instance) {
-    instance.state.set($(e.currentTarget).attr('name'), e.target.value);
+    if ($(e.currentTarget).attr('type') == 'checkbox') {
+      instance.state.set($(e.currentTarget).attr('name'), $(e.currentTarget).prop('checked'));
+    } else {
+      instance.state.set($(e.currentTarget).attr('name'), e.target.value);
+    }
   },
 })

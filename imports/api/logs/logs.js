@@ -20,7 +20,7 @@ Logs.formFields = [
     inches: "Inches", cm: "Centimeters", lbs: "Pounds", kg: "Kilograms"
   }, labelKey)},
   {key: 'type', type: 'enum', label: 'Type', options: _.map({
-    meal: "meal", weight: "weight", right_arm: "Right arm", left_arm: "Left arm"
+    meal: "meal", weight: "weight", right_arm: "Right arm", left_arm: "Left arm", lift: "lift"
   }, labelKey)},
 ];
 

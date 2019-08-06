@@ -13,7 +13,19 @@
             {{#if isType field.type 'map'}}
               {{> mapSelector mapName=field.mapName calcSuggestions=field.calcSuggestions searchDisplay=field.searchDisplay onChange=onChangeFn}}
             {{else}}
-              <input type="{{field.type}}" name="{{field.key}}" class="normal-field"/>
+              {{#if isType field.type 'range'}}
+                <input type="number" name="{{field.minKey}}" placeholder="min" class="normal-field short"/> - <input type="number" name="{{field.maxKey}}" placeholder="max" class="normal-field short"/>
+              {{else}}
+                {{#if isType field.type 'setreps'}}
+                  <input type="number" name="{{field.key}}-sets" placeholder="sets" class="normal-field short"/> x <input type="number" name="{{field.key}}-reps" placeholder="reps" class="normal-field short"/>
+                {{else}}
+                  {{#if isType field.type 'weightreps'}}
+                    <input type="number" name="{{field.key}}-weight" placeholder="weight (lbs)" class="normal-field"/> x <input type="number" name="{{field.key}}-reps" placeholder="reps" class="normal-field short"/>
+                  {{else}}
+                    <input type="{{field.type}}" name="{{field.key}}" class="normal-field"/>
+                  {{/if}}
+                {{/if}}
+              {{/if}}
             {{/if}}
           {{/if}}
         {{/if}}
