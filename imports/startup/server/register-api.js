@@ -14,3 +14,6 @@ import '../../api/logs/publications.js';
 
 import '../../api/lifts/methods.js';
 import '../../api/lifts/publications.js';
+
+import '../../api/workouts/methods.js';
+import '../../api/workouts/publications.js';

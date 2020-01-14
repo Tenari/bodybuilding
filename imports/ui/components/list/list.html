@@ -1,0 +1,10 @@
+<template name="list">
+  {{#each entry in list}}
+    {{label}} {{entry.number}}:
+    <div>
+      {{#each field in fields}}
+        {{> formField field=field}}
+      {{/each}}
+    </div>
+  {{/each}}
+</template>

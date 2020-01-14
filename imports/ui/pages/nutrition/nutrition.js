@@ -2,6 +2,7 @@ import { _ } from 'meteor/underscore';
 import { Ingredients } from '/imports/api/ingredients/ingredients.js';
 import { Meals } from '/imports/api/meals/meals.js';
 import { Lifts } from '/imports/api/lifts/lifts.js';
+import { Workouts } from '/imports/api/workouts/workouts.js';
 
 import './nutrition.html';
 import '/imports/ui/components/commandline/commandline.js';
@@ -56,6 +57,7 @@ Template.nutrition.helpers({
       ingredient: {collection: Ingredients, add: 'ingredients.add'},
       meal: {collection: Meals, add: 'meals.add'},
       lift: {collection: Lifts, add: 'lifts.add'},
+      workout: {collection: Workouts, add: 'workouts.add'},
     }
     return {
       fields: mapping[add].collection.formFields,

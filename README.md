@@ -13,13 +13,12 @@
 - [ ] training tools
   - [ ] setup muscles which can be worked (big vs little)
   - [ ] add lifts (a name, a calculated 1RM, a primary and optional secondary muscle worked, compound bool, ideal rep-range)
-  - [ ] schedule workout (a collection of lifts setXrep @ %of 1RM, rest period, rir)
-  - [ ] add muscle-scheme (a list of liftXsets with a rep-range to work through that constitutes your workout for a given muscle)
-  - [ ] add workouts (a collection of muscle-schemes)
-  - [ ] add week (a 7 day list of rest or workout references, with a goal rep-change (0=stay same, 1=add 1 rep to one set, etc) and a goal rir)
-  - [ ] add program (a series of weeks)
+  - [ ] add workouts (a list of lifts [sets]x[reps] @[weight] where reps and weight are expressed as relative changes over previous workout or previous best)
+  - [ ] add program (a series of workouts with rest days)
   - [ ] schedule program
+  - [ ] schedule lift
 
+schedule workout (a collection of lifts setXrep @ %of 1RM, rest period, rir)
 
 # mocks
 
@@ -35,65 +34,24 @@ ideal rep range: [num] - [num]
 ```
 
 ```
-$ add muscle-scheme
-
-name: ______
-muscle: [dropdown v]
-lift 1: [dropdown v] [sets] optional swapper [dropdown v]
-[+ add lift]
-```
-
-```
 $ add workout
 
 name: ______
-muscle-scheme 1: [dropdown v]
-muscle-scheme 2: [dropdown v]
-muscle-scheme 3: [dropdown v]
-muscle-scheme 4: [dropdown v]
-muscle-scheme 5: [dropdown v]
-[+ add muscle-scheme]
-[submit]
-```
-
-```
-$ add week
-
-name: ______
-
-sun: [dropdown v] rest or choose a workout
-     goal rep-change: [num]
-     rir: [num]
-mon: [dropdown v] rest or choose a workout
-     goal rep-change: [num]
-     rir: [num]
-tue: [dropdown v] rest or choose a workout
-     goal rep-change: [num]
-     rir: [num]
-wed: [dropdown v] rest or choose a workout
-     goal rep-change: [num]
-     rir: [num]
-thu: [dropdown v] rest or choose a workout
-     goal rep-change: [num]
-     rir: [num]
-fri: [dropdown v] rest or choose a workout
-     goal rep-change: [num]
-     rir: [num]
-sat: [dropdown v] rest or choose a workout
-     goal rep-change: [num]
-     rir: [num]
+muscles worked: calc field lists [muscle]x[sets] including 0.5 for secondary
+lift 1: [lifts dropdown v] 
+  sets: [sets]
+  reps: [exact/previous/best/rir dropdown v] [reps number] {{help copy}}
+  weight: [exact/%1RM/previous/best dropdown v] [weight number]
+  resting [number] minutes between sets
+[+ add lift]
 [submit]
 ```
 
 ```
 $ add program
 
-week 1: [dropdown v] match previous
-week 2: [dropdown v] improve reps
-week 3: [dropdown v] improve reps
-week 4: [dropdown v] improve reps
-week 5: [dropdown v] deload
-[+ add week button]
+day 1: [dropdown workouts or "rest" v]
+[+ add day button]
 [submit]
 ```
 
@@ -110,8 +68,21 @@ Little muscles
   side delts
   abs
 
-LIFT                    SETS  WEIGHT  REST PREV      BEST      GOAL
-bench                   2     160     3m   11,11     12,11     12,12
-db flyes                3     25      3m   13,11,10  13,11,10  13,12,10
+LIFT                    SETS  WEIGHT  REST REPS
+bench                   2     160     3m   11,11
+db flyes                3     25      3m   13,11,10
 etc...
 ```
+
+# HST
+
+12 muscles trained (default 9)
+  pick exercises for each muscle
+6 days per week (default 3)
+2 muscle split (number of distinct lists of muscles worked out in a given workout (default 1))
+  pick muscles for each split
+2 week blocks (default 2)
+3 rep range blocks (default 3)
+split rep ranges for isolation? yes (default no)
+15/18, 10/13, 5/8 rep ranges
+

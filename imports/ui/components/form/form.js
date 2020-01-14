@@ -1,6 +1,8 @@
 import './form.html';
+import '/imports/ui/components/formField/formField.js';
 import '/imports/ui/components/dropdown/dropdown.js';
 import '/imports/ui/components/mapSelector/mapSelector.js';
+import '/imports/ui/components/list/list.js';
 
 Template.form.onCreated(function(){
   this.state = new ReactiveDict();

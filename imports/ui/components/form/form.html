@@ -2,34 +2,13 @@
   <h2>{{header}}</h2>
   <form>
     {{#each field in fields}}
-      <div>
-        {{field.label}} 
-        {{#if isType field.type 'enum'}}
-          {{> dropdown options=field.options key=field.key onChange=onChangeFn}}
-        {{else}}
-          {{#if isType field.type 'calc'}}
-            {{doCalc field}}
-          {{else}}
-            {{#if isType field.type 'map'}}
-              {{> mapSelector mapName=field.mapName calcSuggestions=field.calcSuggestions searchDisplay=field.searchDisplay onChange=onChangeFn}}
-            {{else}}
-              {{#if isType field.type 'range'}}
-                <input type="number" name="{{field.minKey}}" placeholder="min" class="normal-field short"/> - <input type="number" name="{{field.maxKey}}" placeholder="max" class="normal-field short"/>
-              {{else}}
-                {{#if isType field.type 'setreps'}}
-                  <input type="number" name="{{field.key}}-sets" placeholder="sets" class="normal-field short"/> x <input type="number" name="{{field.key}}-reps" placeholder="reps" class="normal-field short"/>
-                {{else}}
-                  {{#if isType field.type 'weightreps'}}
-                    <input type="number" name="{{field.key}}-weight" placeholder="weight (lbs)" class="normal-field"/> x <input type="number" name="{{field.key}}-reps" placeholder="reps" class="normal-field short"/>
-                  {{else}}
-                    <input type="{{field.type}}" name="{{field.key}}" class="normal-field"/>
-                  {{/if}}
-                {{/if}}
-              {{/if}}
-            {{/if}}
-          {{/if}}
-        {{/if}}
-      </div>
+      {{#if isType field.type 'list'}}
+        {{> list fields=field.listFields label=field.label}}
+      {{else if isType field.type 'calc'}}
+        <div>{{field.label}} {{doCalc field}}</div>
+      {{else}}
+        {{> formField field=field onChangeFn=onChangeFn}}
+      {{/if}}
     {{/each}}
     <button class="submit">submit</button>
   </form>
